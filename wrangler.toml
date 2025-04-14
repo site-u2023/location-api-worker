@@ -1,0 +1,23 @@
+# Workerの名前 (GitHubリポジトリ名、およびCloudflare上での新しいアプリケーション名)
+name = "location-api-worker"
+
+# Workerのエントリーポイントとなるスクリプトファイル
+# この後、実際に `src` フォルダを作成し、その中に `index.js` を配置する必要があります。
+main = "src/index.js"
+
+# 互換性日付 (Wranglerがコードの互換性を判断するために使用)
+# プロジェクトを開始した日付に近い日付、または `npx wrangler init` で推奨される日付を指定します。
+# 例として今日の日付に近いものを入れますが、必要に応じて調整してください。
+compatibility_date = "2025-04-14"
+
+# --- オプション ---
+# 必要に応じて将来追加する可能性のある設定例 (現時点ではコメントアウト)
+# account_id = "YOUR_ACCOUNT_ID" # 通常はWranglerが自動検出するか、環境変数やシークレットで設定
+# kv_namespaces = [
+#   { binding = "MY_KV_NAMESPACE", id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+# ]
+# r2_buckets = [
+#   { binding = "MY_BUCKET", bucket_name = "my-bucket" }
+# ]
+# env.production] # 本番環境固有の設定など
+# route = { pattern = "example.com/*", zone_id = "YOUR_ZONE_ID" }

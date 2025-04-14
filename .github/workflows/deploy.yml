@@ -1,0 +1,39 @@
+name: Deploy Cloudflare Worker
+
+on:
+  push:
+    branches:
+      # 'main' ブランチへのプッシュ時にワークフローを実行
+      - main
+  # 手動での実行も許可する (GitHub Actionsタブから)
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy Worker to Cloudflare
+    steps:
+      - name: Checkout code
+        # リポジトリのコードをチェックアウト
+        uses: actions/checkout@v4 # Use latest major version
+
+      - name: Set up Node.js
+        # Node.js環境をセットアップ (Wranglerの実行に必要)
+        # Cloudflare推奨のLTSバージョンを使用 (変更が必要な場合あり)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use a recent LTS version
+
+      - name: Install Wrangler CLI
+        # Cloudflareのデプロイツール Wrangler をインストール
+        run: npm install --save-dev wrangler
+
+      - name: Publish Worker
+        # Wrangler を使用してCloudflareにデプロイ
+        # CLOUDFLARE_API_TOKEN と CLOUDFLARE_ACCOUNT_ID はGitHubのSecretsに設定する必要あり
+        uses: cloudflare/wrangler-action@v3 # Use latest major version
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # wrangler.toml の name を使用してデプロイ
+          # command: publish # 'wrangler publish' を実行 (wrangler-action v3では不要な場合が多い)
