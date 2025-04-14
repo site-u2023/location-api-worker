@@ -106,5 +106,5 @@ Deployment is automated via GitHub Actions in this repository upon pushing to th
 
 ## License
 
-(Please add your chosen license here, e.g., MIT License)
+(MIT License)
 ```
