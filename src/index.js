@@ -42,7 +42,7 @@ export default {
 
       // --- request.cf exists, proceed to extract data ---
 
-      const countryCode = request.cf.country;
+      const country = request.cf.country;
       const timezone = request.cf.timezone;
       const isp = request.cf.asOrganization;
       const asn = request.cf.asn;
@@ -65,7 +65,7 @@ export default {
       const responseJson = {
         query: clientIp || null,
         status: "success",
-        countryCode: countryCode || null,
+        country: country || null,         // 修正: countryCode → country
         timezone: timezone || null,
         isp: isp || null,
         as: as || null,
